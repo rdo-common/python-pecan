@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.2.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -14,7 +14,7 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 
-Requires:       python-webob1.2 >= 1.2
+Requires:       python-webob >= 1.2
 Requires:       python-simplegeneric >= 0.8
 Requires:       python-mako >= 0.4.0
 Requires:       python-webtest >= 1.3.1
@@ -45,5 +45,8 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Fri Apr  5 2013 Luke Macken <lmacken@redhat.com> - 0.2.1-5
+- Require python-webob >= 1.2 instead of python-webob1.2
+
 * Thu Mar 14 2013 Padraig Brady <P@draigBrady.com> - 0.2.1-4
 - Initial package.
