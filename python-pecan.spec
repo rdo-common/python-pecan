@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.2.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -45,6 +45,9 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.1-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Fri Apr  5 2013 Luke Macken <lmacken@redhat.com> - 0.2.1-5
 - Require python-webob >= 1.2 instead of python-webob1.2
 
