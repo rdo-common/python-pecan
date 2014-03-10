@@ -2,8 +2,8 @@
 %global pypi_name pecan
 
 Name:           python-%{pypi_name}
-Version:        0.2.1
-Release:        6%{?dist}
+Version:        0.4.5
+Release:        1%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -45,6 +45,9 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Mon Mar 10 2014 Pádraig Brady <pbrady@redhat.com> - 0.4.5-1
+- Latest upstream
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.1-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
