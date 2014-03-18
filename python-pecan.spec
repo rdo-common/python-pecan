@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.4.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -17,6 +17,7 @@ BuildRequires:  python-setuptools
 Requires:       python-webob >= 1.2
 Requires:       python-simplegeneric >= 0.8
 Requires:       python-mako >= 0.4.0
+Requires:       python-singledispatch
 Requires:       python-webtest >= 1.3.1
 Requires:       python-argparse
 Requires:       python-setuptools
@@ -45,6 +46,9 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Tue Mar 18 2014 Pádraig Brady <pbrady@redhat.com> - 0.4.5-2
+- Add missing dependency on python-singledispatch
+
 * Mon Mar 10 2014 Pádraig Brady <pbrady@redhat.com> - 0.4.5-1
 - Latest upstream
 
