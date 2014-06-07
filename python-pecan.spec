@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.4.5
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -49,6 +49,9 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.5-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Sun Mar 23 2014 Pádraig Brady <pbrady@redhat.com> - 0.4.5-3
 - Add missing dependency on python-logutils
 
