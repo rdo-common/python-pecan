@@ -2,8 +2,8 @@
 %global pypi_name pecan
 
 Name:           python-%{pypi_name}
-Version:        0.4.5
-Release:        4%{?dist}
+Version:        0.8.3
+Release:        1%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -20,9 +20,9 @@ Requires:       python-mako >= 0.4.0
 Requires:       python-singledispatch
 Requires:       python-webtest >= 1.3.1
 Requires:       python-setuptools
+Requires:       python-logutils
 %if 0%{?rhel} == 6
 Requires:       python-argparse
-Requires:       python-logutils
 %endif
 
 %description
@@ -49,6 +49,9 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Thu Mar 26 2015 Pádraig Brady <pbrady@redhat.com> - 0.8.3-1
+- Latest upstream
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.5-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
