@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.8.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -49,6 +49,9 @@ fast with few dependencies
 %{python_sitelib}/
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Thu Mar 26 2015 Pádraig Brady <pbrady@redhat.com> - 0.8.3-1
 - Latest upstream
 
