@@ -1,54 +1,112 @@
-# Created by pyp2rpm-1.0.1
 %global pypi_name pecan
+%{!?_licensedir:%global license %%doc}
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 
 Name:           python-%{pypi_name}
-Version:        0.8.3
-Release:        2%{?dist}
+Version:        1.0.2
+Release:        1%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
-URL:            http://github.com/dreamhost/pecan
+URL:            http://github.com/pecan/pecan
 Source0:        http://pypi.python.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
-
-BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
-
-Requires:       python-webob >= 1.2
-Requires:       python-simplegeneric >= 0.8
-Requires:       python-mako >= 0.4.0
-Requires:       python-singledispatch
-Requires:       python-webtest >= 1.3.1
-Requires:       python-setuptools
-Requires:       python-logutils
-%if 0%{?rhel} == 6
-Requires:       python-argparse
-%endif
 
 %description
 A WSGI object-dispatching web framework, designed to be lean and
 fast with few dependencies
 
+%package -n python2-%{pypi_name}
+Summary:        A lean WSGI object-dispatching web framework
+%{?python_provide:%python_provide python2-%{pypi_name}}
+# python_provide does not exist in CBS Cloud buildroot
+Provides:       python-%{pypi_name} = %{upstream_version}
+Obsoletes:      python-%{pypi_name} < %{upstream_version}
+
+BuildRequires:  python2-devel
+BuildRequires:  python-setuptools
+
+Requires:       python-webob
+Requires:       python-simplegeneric
+Requires:       python-mako
+Requires:       python-singledispatch
+Requires:       python-webtest
+Requires:       python-setuptools
+Requires:       python-logutils
+Requires:       python-six
+
+%description -n python2-%{pypi_name}
+A WSGI object-dispatching web framework, designed to be lean and
+fast with few dependencies
+
+# python3 stuff
+%if 0%{?with_python3}
+%package -n python3-%{pypi_name}
+Summary:        A lean WSGI object-dispatching web framework
+%{?python_provide:%python_provide python3-%{pypi_name}}
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+
+Requires:       python3-webob
+Requires:       python3-simplegeneric
+Requires:       python3-mako
+Requires:       python3-singledispatch
+Requires:       python3-webtest
+Requires:       python3-setuptools
+Requires:       python3-logutils
+Requires:       python3-six
+
+%description -n python3-%{pypi_name}
+A WSGI object-dispatching web framework, designed to be lean and
+fast with few dependencies
+%endif
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-
+# Remove bundled egg-info
+rm -rf %{pypi_name}.egg-info
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
+%if 0%{?with_python3}
+%{__python3} setup.py build
+%endif
 
 %install
-%{__python} setup.py install --skip-build --root %{buildroot}
+%{__python2} setup.py install --skip-build --root %{buildroot}
 
+%if 0%{?with_python3}
+%{__python3} setup.py install --skip-build --root %{buildroot}
+%endif
 
-%files
-%doc LICENSE README.rst
+%files -n python2-%{pypi_name}
+%doc README.rst
+%license LICENSE
 %{_bindir}/pecan
 %{_bindir}/gunicorn_pecan
-%{python_sitelib}/
+%{python2_sitelib}/%{pypi_name}
+%{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+
+%if 0%{?with_python3}
+%files -n python3-%{pypi_name}
+%doc README.rst
+%license LICENSE
+%{_bindir}/pecan
+%{_bindir}/gunicorn_pecan
+%{python3_sitelib}/%{pypi_name}
+%{python3_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%endif
 
 %changelog
+* Fri Sep 04 2015 Chandan Kumar <chkumar246@gmail.com> - 1.0.2-1
+- Added python2 and python3 subpackage
+- Bumped to 1.0.2
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
