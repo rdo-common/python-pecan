@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -23,8 +23,8 @@ fast with few dependencies
 Summary:        A lean WSGI object-dispatching web framework
 %{?python_provide:%python_provide python2-%{pypi_name}}
 # python_provide does not exist in CBS Cloud buildroot
-Provides:       python-%{pypi_name} = %{upstream_version}
-Obsoletes:      python-%{pypi_name} < %{upstream_version}
+Provides:       python-%{pypi_name} = %{version}-%{release}
+Obsoletes:      python-%{pypi_name} < 1.0.2-2
 
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
@@ -103,6 +103,9 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %changelog
+* Sun Sep 06 2015 Matthias Runge <mrunge@redhat.com> - 1.0.2-2
+- fix provides and obsoletes
+
 * Fri Sep 04 2015 Chandan Kumar <chkumar246@gmail.com> - 1.0.2-1
 - Added python2 and python3 subpackage
 - Bumped to 1.0.2
