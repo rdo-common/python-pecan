@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -78,17 +78,29 @@ rm -rf %{pypi_name}.egg-info
 %endif
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
-
 %if 0%{?with_python3}
 %{__python3} setup.py install --skip-build --root %{buildroot}
+mv %{buildroot}%{_bindir}/pecan %{buildroot}%{_bindir}/pecan-%{python3_version}
+ln -s pecan-%{python3_version} %{buildroot}%{_bindir}/pecan-3
+mv %{buildroot}%{_bindir}/gunicorn_pecan %{buildroot}%{_bindir}/gunicorn_pecan-%{python3_version}
+ln -s gunicorn_pecan-%{python3_version} %{buildroot}%{_bindir}/gunicorn_pecan-3
 %endif
+
+%{__python2} setup.py install --skip-build --root %{buildroot}
+mv %{buildroot}%{_bindir}/pecan %{buildroot}%{_bindir}/pecan-%{python2_version}
+ln -s pecan-%{python2_version} %{buildroot}%{_bindir}/pecan-2
+ln -s pecan-%{python2_version} %{buildroot}%{_bindir}/pecan
+mv %{buildroot}%{_bindir}/gunicorn_pecan %{buildroot}%{_bindir}/gunicorn_pecan-%{python2_version}
+ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan-2
+ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan
 
 %files -n python2-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{_bindir}/pecan
 %{_bindir}/gunicorn_pecan
+%{_bindir}/pecan-2*
+%{_bindir}/gunicorn_pecan-2*
 %{python2_sitelib}/%{pypi_name}
 %{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
 
@@ -96,13 +108,28 @@ rm -rf %{pypi_name}.egg-info
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
-%{_bindir}/pecan
-%{_bindir}/gunicorn_pecan
+%{_bindir}/pecan-3*
+%{_bindir}/gunicorn_pecan-3*
 %{python3_sitelib}/%{pypi_name}
 %{python3_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
 %endif
 
 %changelog
+* Sat Nov  7 2015 Toshio Kuratomi <toshio@fedoraproject.org> - 1.0.2-3
+- Fix the naming of python2 vs python3 versions of the scripts to comply with
+  the python guidelines: https://fedoraproject.org/wiki/Packaging:Python#Naming
+  This fixes several things:
+  * The scripts in the python2-pecan package not working because they
+    needed the python3-pecan libraries but there was no rpm dependency
+  * The python2-pecan package requiring /usr/bin/python3
+  * The python2-pecan package's scripts wouldn't have been able to serve
+    web apps written in python2 because they were using python3 and would
+    have failed to run pyhon2 scripts in their python3 process.
+  * If those were fixed properly then the python-pecan and python3-pecan
+    packages would have conflicted due to the scripts being different between
+    the packages.
+  Following the guidelines solves all of these problems.
+
 * Sun Sep 06 2015 Matthias Runge <mrunge@redhat.com> - 1.0.2-2
 - fix provides and obsoletes
 
