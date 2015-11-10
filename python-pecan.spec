@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -115,6 +115,9 @@ ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan
 %endif
 
 %changelog
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.2-4
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
 * Sat Nov  7 2015 Toshio Kuratomi <toshio@fedoraproject.org> - 1.0.2-3
 - Fix the naming of python2 vs python3 versions of the scripts to comply with
   the python guidelines: https://fedoraproject.org/wiki/Packaging:Python#Naming
