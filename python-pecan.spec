@@ -6,13 +6,13 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.0.2
-Release:        6%{?dist}
+Version:        1.1.2
+Release:        1%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
 URL:            http://github.com/pecan/pecan
-Source0:        http://pypi.python.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
 %description
@@ -115,6 +115,9 @@ ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan
 %endif
 
 %changelog
+* Tue Jul 19 2016 Alan Pevec <alan.pevec@redhat.com> 1.1.2-1
+- Update to 1.1.2
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.2-6
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
