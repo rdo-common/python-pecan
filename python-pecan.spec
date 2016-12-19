@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -115,6 +115,9 @@ ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan
 %endif
 
 %changelog
+* Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 1.1.2-2
+- Rebuild for Python 3.6
+
 * Tue Jul 19 2016 Alan Pevec <alan.pevec@redhat.com> 1.1.2-1
 - Update to 1.1.2
 
