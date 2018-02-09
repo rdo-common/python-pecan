@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.2.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -27,16 +27,16 @@ Provides:       python-%{pypi_name} = %{version}-%{release}
 Obsoletes:      python-%{pypi_name} < 1.0.2-2
 
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
+BuildRequires:  python2-setuptools
 
-Requires:       python-webob
-Requires:       python-simplegeneric
-Requires:       python-mako
-Requires:       python-singledispatch
-Requires:       python-webtest
-Requires:       python-setuptools
-Requires:       python-logutils
-Requires:       python-six
+Requires:       python2-webob
+Requires:       python2-simplegeneric
+Requires:       python2-mako
+Requires:       python2-singledispatch
+Requires:       python2-webtest
+Requires:       python2-setuptools
+Requires:       python2-logutils
+Requires:       python2-six
 
 %description -n python2-%{pypi_name}
 A WSGI object-dispatching web framework, designed to be lean and
@@ -115,6 +115,10 @@ ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan
 %endif
 
 %changelog
+* Fri Feb 09 2018 Iryna Shcherbina <ishcherb@redhat.com> - 1.2.1-3
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
