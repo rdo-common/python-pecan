@@ -6,8 +6,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.2.1
-Release:        3%{?dist}
+Version:        1.3.2
+Release:        1%{?dist}
 Summary:        A lean WSGI object-dispatching web framework
 
 License:        BSD
@@ -115,6 +115,9 @@ ln -s gunicorn_pecan-%{python2_version} %{buildroot}%{_bindir}/gunicorn_pecan
 %endif
 
 %changelog
+* Fri Jun 01 2018 Alfredo Moralejo <amoralej@redhat.com> - 1.3.2-1
+- Update to 1.3.2 release. It adds support for webob >= 1.8.0.
+
 * Fri Feb 09 2018 Iryna Shcherbina <ishcherb@redhat.com> - 1.2.1-3
 - Update Python 2 dependency declarations to new packaging standards
   (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
