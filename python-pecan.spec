@@ -30,12 +30,12 @@ BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 
 Requires:       python2-webob
-Requires:       python2-simplegeneric
-Requires:       python2-mako
+Requires:       python-simplegeneric
+Requires:       python-mako
 Requires:       python2-singledispatch
-Requires:       python2-webtest
+Requires:       python-webtest
 Requires:       python2-setuptools
-Requires:       python2-logutils
+Requires:       python-logutils
 Requires:       python2-six
 
 %description -n python2-%{pypi_name}
